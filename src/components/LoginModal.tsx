@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plane, Lock, User, AlertCircle, Shield, UserCheck, Key, ArrowRight, Sparkles } from 'lucide-react';
+import { Plane, Lock, User, AlertCircle, Shield, ArrowRight } from 'lucide-react';
 
 interface LoginModalProps {
   onLogin: (username: string, pass: string) => Promise<void>;
@@ -17,7 +17,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin }) => {
       setError('Please enter both username and password');
       return;
     }
-
     setError('');
     setLoading(true);
     try {
@@ -105,48 +104,34 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onLogin }) => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-blue-800 hover:bg-blue-900 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
+              className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-lg shadow-blue-600/20 transition flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
-                'Authenticating...'
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               ) : (
                 <>
-                  <span>Sign In to CRM Portal</span>
+                  Sign In to Workspace
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}
             </button>
-
           </form>
 
-          {/* Quick Demo Logins for Testing Roles */}
-          <div className="pt-4 border-t border-slate-200 space-y-2.5">
-            <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider text-center flex items-center justify-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-              Quick Demo Persona Select
-            </p>
-
-            <div className="grid grid-cols-2 gap-2 text-xs">
+          {/* Quick Login - Removed Raman, just Admin now */}
+          <div className="pt-4 border-t border-slate-100">
+            <div className="text-[10px] uppercase font-bold text-slate-400 mb-3 tracking-wider text-center">
+              Quick Test Accounts
+            </div>
+            <div className="grid grid-cols-1 gap-2">
               <button
                 type="button"
                 onClick={() => fillQuickLogin('admin', 'admin123')}
-                className="p-2.5 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-xl transition text-left space-y-0.5"
+                className="p-2.5 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-xl transition text-left space-y-0.5"
               >
                 <div className="font-bold text-slate-900 flex items-center gap-1">
                   <Shield className="w-3.5 h-3.5 text-emerald-600" /> Admin
                 </div>
                 <div className="text-[10px] text-slate-500">Full Access</div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => fillQuickLogin('raman', 'staff123')}
-                className="p-2.5 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-xl transition text-left space-y-0.5"
-              >
-                <div className="font-bold text-slate-900 flex items-center gap-1">
-                  <UserCheck className="w-3.5 h-3.5 text-sky-600" /> Staff Raman
-                </div>
-                <div className="text-[10px] text-slate-500">Assigned Work</div>
               </button>
             </div>
           </div>

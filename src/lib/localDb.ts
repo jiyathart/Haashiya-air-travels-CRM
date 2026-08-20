@@ -69,39 +69,6 @@ function getSeedData() {
       status: 'active',
       mustChangePassword: false,
       passwordHash: 'admin123'
-    },
-    {
-      id: 'staff-2',
-      name: 'Raman Sharma',
-      username: 'raman',
-      email: 'raman@haashiyatravels.com',
-      phone: '+91 98123 45678',
-      role: 'Staff',
-      status: 'active',
-      mustChangePassword: false,
-      passwordHash: 'staff123'
-    },
-    {
-      id: 'staff-3',
-      name: 'Aisha Patel',
-      username: 'aisha',
-      email: 'aisha@haashiyatravels.com',
-      phone: '+91 98234 56789',
-      role: 'Staff',
-      status: 'active',
-      mustChangePassword: false,
-      passwordHash: 'staff123'
-    },
-    {
-      id: 'staff-4',
-      name: 'Tariq Khan',
-      username: 'tariq',
-      email: 'tariq@haashiyatravels.com',
-      phone: '+91 98345 67890',
-      role: 'Staff',
-      status: 'active',
-      mustChangePassword: false,
-      passwordHash: 'staff123'
     }
   ];
 
@@ -127,7 +94,7 @@ function getSeedData() {
       reportingDate: t1Reporting.reportingDate,
       reportingTime: t1Reporting.reportingTime,
       ticketStatus: 'Confirmed',
-      assignedStaffId: 'staff-2',
+      assignedStaffId: 'staff-admin-1',
       totalAmount: 45000,
       amountPaid: 20000,
       balanceDue: 25000,
@@ -138,8 +105,8 @@ function getSeedData() {
           date: getOffsetDate(-1),
           amount: 20000,
           mode: 'UPI',
-          receivedByStaffId: 'staff-2',
-          receivedByStaffName: 'Raman Sharma',
+          receivedByStaffId: 'staff-admin-1',
+          receivedByStaffName: 'Administrator',
           note: 'Advance booking payment',
           createdAt: new Date(Date.now() - 24 * 3600 * 1000).toISOString()
         }
@@ -150,8 +117,8 @@ function getSeedData() {
         {
           id: 'note-1',
           text: 'Customer requested aisle seat near exit row. Confirmed with airline desk.',
-          staffId: 'staff-2',
-          staffName: 'Raman Sharma',
+          staffId: 'staff-admin-1',
+          staffName: 'Administrator',
           timestamp: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString()
         }
       ],
@@ -160,8 +127,8 @@ function getSeedData() {
           id: 'hist-1',
           oldStatus: 'Enquiry',
           newStatus: 'Confirmed',
-          changedByStaffId: 'staff-2',
-          changedByStaffName: 'Raman Sharma',
+          changedByStaffId: 'staff-admin-1',
+          changedByStaffName: 'Administrator',
           timestamp: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString()
         }
       ]
@@ -182,7 +149,7 @@ function getSeedData() {
       reportingDate: t2Reporting.reportingDate,
       reportingTime: t2Reporting.reportingTime,
       ticketStatus: 'Ticketed',
-      assignedStaffId: 'staff-3',
+      assignedStaffId: 'staff-admin-1',
       totalAmount: 6500,
       amountPaid: 6500,
       balanceDue: 0,
@@ -193,8 +160,8 @@ function getSeedData() {
           date: getOffsetDate(-2),
           amount: 6500,
           mode: 'Card',
-          receivedByStaffId: 'staff-3',
-          receivedByStaffName: 'Aisha Patel',
+          receivedByStaffId: 'staff-admin-1',
+          receivedByStaffName: 'Administrator',
           note: 'Full ticket payment',
           createdAt: new Date(Date.now() - 48 * 3600 * 1000).toISOString()
         }
@@ -205,8 +172,8 @@ function getSeedData() {
         {
           id: 'note-2',
           text: 'E-Ticket PDF generated and WhatsApp copy sent to passenger.',
-          staffId: 'staff-3',
-          staffName: 'Aisha Patel',
+          staffId: 'staff-admin-1',
+          staffName: 'Administrator',
           timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString()
         }
       ],
@@ -215,16 +182,16 @@ function getSeedData() {
           id: 'hist-2a',
           oldStatus: 'Enquiry',
           newStatus: 'Confirmed',
-          changedByStaffId: 'staff-3',
-          changedByStaffName: 'Aisha Patel',
+          changedByStaffId: 'staff-admin-1',
+          changedByStaffName: 'Administrator',
           timestamp: new Date(Date.now() - 3 * 24 * 3600 * 1000).toISOString()
         },
         {
           id: 'hist-2b',
           oldStatus: 'Confirmed',
           newStatus: 'Ticketed',
-          changedByStaffId: 'staff-3',
-          changedByStaffName: 'Aisha Patel',
+          changedByStaffId: 'staff-admin-1',
+          changedByStaffName: 'Administrator',
           timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString()
         }
       ]
@@ -245,7 +212,7 @@ function getSeedData() {
       reportingDate: t3Reporting.reportingDate,
       reportingTime: t3Reporting.reportingTime,
       ticketStatus: 'Enquiry',
-      assignedStaffId: 'staff-4',
+      assignedStaffId: 'staff-admin-1',
       totalAmount: 78000,
       amountPaid: 0,
       balanceDue: 78000,
@@ -257,8 +224,8 @@ function getSeedData() {
         {
           id: 'note-3',
           text: 'Waiting for customer passport copy scan before booking confirmation.',
-          staffId: 'staff-4',
-          staffName: 'Tariq Khan',
+          staffId: 'staff-admin-1',
+          staffName: 'Administrator',
           timestamp: new Date(Date.now() - 4 * 24 * 3600 * 1000).toISOString()
         }
       ],
@@ -280,7 +247,7 @@ function getSeedData() {
       reportingDate: t4Reporting.reportingDate,
       reportingTime: t4Reporting.reportingTime,
       ticketStatus: 'Completed',
-      assignedStaffId: 'staff-2',
+      assignedStaffId: 'staff-admin-1',
       totalAmount: 112000,
       amountPaid: 112000,
       balanceDue: 0,
@@ -291,8 +258,8 @@ function getSeedData() {
           date: getOffsetDate(-3),
           amount: 112000,
           mode: 'Bank Transfer',
-          receivedByStaffId: 'staff-2',
-          receivedByStaffName: 'Raman Sharma',
+          receivedByStaffId: 'staff-admin-1',
+          receivedByStaffName: 'Administrator',
           note: 'Full settlement',
           createdAt: new Date(Date.now() - 72 * 3600 * 1000).toISOString()
         }
@@ -303,8 +270,8 @@ function getSeedData() {
         {
           id: 'note-4',
           text: 'Passenger successfully boarded flight.',
-          staffId: 'staff-2',
-          staffName: 'Raman Sharma',
+          staffId: 'staff-admin-1',
+          staffName: 'Administrator',
           timestamp: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString()
         }
       ],
@@ -313,8 +280,8 @@ function getSeedData() {
           id: 'hist-4',
           oldStatus: 'Ticketed',
           newStatus: 'Completed',
-          changedByStaffId: 'staff-2',
-          changedByStaffName: 'Raman Sharma',
+          changedByStaffId: 'staff-admin-1',
+          changedByStaffName: 'Administrator',
           timestamp: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString()
         }
       ]
@@ -333,7 +300,7 @@ function getSeedData() {
       appointmentDate: getOffsetDate(0),
       appointmentTime: '10:30',
       passportStatus: 'Appointment Booked',
-      assignedStaffId: 'staff-2',
+      assignedStaffId: 'staff-admin-1',
       totalAmount: 2500,
       amountPaid: 1000,
       balanceDue: 1500,
@@ -344,8 +311,8 @@ function getSeedData() {
           date: getOffsetDate(-1),
           amount: 1000,
           mode: 'Cash',
-          receivedByStaffId: 'staff-2',
-          receivedByStaffName: 'Raman Sharma',
+          receivedByStaffId: 'staff-admin-1',
+          receivedByStaffName: 'Administrator',
           note: 'Advance service fee',
           createdAt: new Date(Date.now() - 24 * 3600 * 1000).toISOString()
         }
@@ -356,8 +323,8 @@ function getSeedData() {
         {
           id: 'pnote-1',
           text: 'Verified all original documents: Aadhaar, Bank Statement, Birth Cert.',
-          staffId: 'staff-2',
-          staffName: 'Raman Sharma',
+          staffId: 'staff-admin-1',
+          staffName: 'Administrator',
           timestamp: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString()
         }
       ],
@@ -366,8 +333,8 @@ function getSeedData() {
           id: 'phist-1',
           oldStatus: 'Application Submitted',
           newStatus: 'Appointment Booked',
-          changedByStaffId: 'staff-2',
-          changedByStaffName: 'Raman Sharma',
+          changedByStaffId: 'staff-admin-1',
+          changedByStaffName: 'Administrator',
           timestamp: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString()
         }
       ]
@@ -383,7 +350,7 @@ function getSeedData() {
       appointmentDate: getOffsetDate(1),
       appointmentTime: '14:15',
       passportStatus: 'Biometric Done',
-      assignedStaffId: 'staff-3',
+      assignedStaffId: 'staff-admin-1',
       totalAmount: 3000,
       amountPaid: 3000,
       balanceDue: 0,
@@ -394,8 +361,8 @@ function getSeedData() {
           date: getOffsetDate(-2),
           amount: 3000,
           mode: 'UPI',
-          receivedByStaffId: 'staff-3',
-          receivedByStaffName: 'Aisha Patel',
+          receivedByStaffId: 'staff-admin-1',
+          receivedByStaffName: 'Administrator',
           note: 'Full service fee',
           createdAt: new Date(Date.now() - 48 * 3600 * 1000).toISOString()
         }
@@ -406,8 +373,8 @@ function getSeedData() {
         {
           id: 'pnote-2',
           text: 'Biometric capture completed at PSK. Awaiting police verification call.',
-          staffId: 'staff-3',
-          staffName: 'Aisha Patel',
+          staffId: 'staff-admin-1',
+          staffName: 'Administrator',
           timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString()
         }
       ],
@@ -416,8 +383,8 @@ function getSeedData() {
           id: 'phist-2',
           oldStatus: 'Appointment Booked',
           newStatus: 'Biometric Done',
-          changedByStaffId: 'staff-3',
-          changedByStaffName: 'Aisha Patel',
+          changedByStaffId: 'staff-admin-1',
+          changedByStaffName: 'Administrator',
           timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString()
         }
       ]
@@ -433,7 +400,7 @@ function getSeedData() {
       serviceType: 'PAN Card',
       description: 'New PAN Card application with Aadhaar linking',
       status: 'In Progress',
-      assignedStaffId: 'staff-2',
+      assignedStaffId: 'staff-admin-1',
       dueDate: getOffsetDate(0),
       totalAmount: 500,
       amountPaid: 200,
@@ -445,8 +412,8 @@ function getSeedData() {
           date: getOffsetDate(-1),
           amount: 200,
           mode: 'UPI',
-          receivedByStaffId: 'staff-2',
-          receivedByStaffName: 'Raman Sharma',
+          receivedByStaffId: 'staff-admin-1',
+          receivedByStaffName: 'Administrator',
           note: 'Advance received',
           createdAt: new Date(Date.now() - 24 * 3600 * 1000).toISOString()
         }
@@ -457,8 +424,8 @@ function getSeedData() {
         {
           id: 'gtnote-1',
           text: 'Aadhaar copy and photos collected.',
-          staffId: 'staff-2',
-          staffName: 'Raman Sharma',
+          staffId: 'staff-admin-1',
+          staffName: 'Administrator',
           timestamp: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString()
         }
       ],
@@ -467,8 +434,8 @@ function getSeedData() {
           id: 'gthist-1',
           oldStatus: 'Enquiry',
           newStatus: 'In Progress',
-          changedByStaffId: 'staff-2',
-          changedByStaffName: 'Raman Sharma',
+          changedByStaffId: 'staff-admin-1',
+          changedByStaffName: 'Administrator',
           timestamp: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString()
         }
       ]

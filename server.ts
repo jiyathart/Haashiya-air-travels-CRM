@@ -153,32 +153,6 @@ function getSeedData() {
       role: 'Admin',
       status: 'active',
       passwordHash: adminPassHash
-    },
-    {
-      id: 'staff-2',
-      staff_code: 'HAT-0002',
-      staffCode: 'HAT-0002',
-      full_name: 'Raman Sharma',
-      name: 'Raman Sharma (Staff 1)',
-      username: 'staff1',
-      email: 'staff1@haashiyatravels.com',
-      phone: '+91 98123 45678',
-      role: 'Staff',
-      status: 'active',
-      passwordHash: staffPassHash
-    },
-    {
-      id: 'staff-3',
-      staff_code: 'HAT-0003',
-      staffCode: 'HAT-0003',
-      full_name: 'Aisha Patel',
-      name: 'Aisha Patel (Staff 2)',
-      username: 'staff2',
-      email: 'staff2@haashiyatravels.com',
-      phone: '+91 98234 56789',
-      role: 'Staff',
-      status: 'active',
-      passwordHash: staffPassHash
     }
   ];
 

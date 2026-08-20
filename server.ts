@@ -420,23 +420,12 @@ app.post('/api/create-staff', async (req: Request, res: Response) => {
           },
         });
 
-        if (adminErr && adminErr.message?.toLowerCase().includes('user not allowed')) {
-          console.log('Falling back to standard signUp because admin.createUser is not allowed (anon key used).');
-          const { data: signUpData, error: signUpErr } = await supabaseAdmin.auth.signUp({
-            email: cleanEmail,
-            password: password,
-            options: {
-              data: {
-                full_name: fullName.trim(),
-                role: role.toLowerCase(),
-              }
-            }
-          });
-          authData = signUpData;
-          authError = signUpErr;
+        if (adminErr) {
+          authData = null;
+          authError = adminErr;
         } else {
           authData = adminData;
-          authError = adminErr;
+          authError = null;
         }
 
         if (authError) {

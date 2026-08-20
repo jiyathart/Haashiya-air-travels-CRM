@@ -1,0 +1,81 @@
+{
+  "staff": [],
+  "ticketBookings": [],
+  "passportProcesses": [],
+  "generalTasks": [
+    {
+      "id": "gt-1786790695815",
+      "type": "general",
+      "title": "Community / Income Certificate for kj",
+      "customerName": "kj",
+      "mobileNumber": "hjkjhkhjk",
+      "serviceType": "Community / Income Certificate",
+      "description": "",
+      "status": "Enquiry",
+      "assignedStaffId": "staff-1786790428204",
+      "dueDate": "2026-08-29",
+      "totalAmount": 3200,
+      "amountPaid": 0,
+      "balanceDue": 3200,
+      "paymentStatus": "Unpaid",
+      "payments": [],
+      "createdAt": "2026-08-15T10:44:55.815Z",
+      "updatedAt": "2026-08-15T10:44:55.815Z",
+      "notes": [],
+      "statusHistory": [
+        {
+          "id": "hist-1786790695815",
+          "oldStatus": "Created",
+          "newStatus": "Enquiry",
+          "changedByStaffId": "staff-admin-1",
+          "changedByStaffName": "Administrator",
+          "timestamp": "2026-08-15T10:44:55.815Z"
+        }
+      ]
+    },
+    {
+      "id": "gt-1786790641717",
+      "type": "general",
+      "title": "PAN Card Application for gh",
+      "customerName": "gh",
+      "mobileNumber": "9952595090",
+      "serviceType": "PAN Card Application",
+      "description": "",
+      "status": "Enquiry",
+      "assignedStaffId": "staff-1786790428204",
+      "dueDate": "2026-08-15",
+      "totalAmount": 298,
+      "amountPaid": 0,
+      "balanceDue": 298,
+      "paymentStatus": "Unpaid",
+      "payments": [],
+      "createdAt": "2026-08-15T10:44:01.717Z",
+      "updatedAt": "2026-08-15T10:44:01.717Z",
+      "notes": [],
+      "statusHistory": [
+        {
+          "id": "hist-1786790641717",
+          "oldStatus": "Created",
+          "newStatus": "Enquiry",
+          "changedByStaffId": "staff-admin-1",
+          "changedByStaffName": "Administrator",
+          "timestamp": "2026-08-15T10:44:01.717Z"
+        }
+      ]
+    }
+  ],
+  "generalServiceTypes": [
+    "PAN Card Application",
+    "Aadhaar Card Update",
+    "Patta / Chitta Land Record",
+    "Community / Income Certificate",
+    "E-Sevai Government Filing",
+    "Voter ID / Election Card",
+    "GCC GAMCA Medical Slip",
+    "GCC Attestation Services",
+    "Travel Insurance",
+    "Hotel Booking",
+    "Visa Stamping / Processing"
+  ],
+  "acknowledgedReminders": {}
+}

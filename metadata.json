@@ -1,0 +1,6 @@
+{
+  "name": "Haashiya Air Travels CRM",
+  "description": "Travel Agency CRM for ticket bookings, passport processing, staff assignments, and work reminders.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

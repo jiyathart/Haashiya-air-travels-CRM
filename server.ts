@@ -254,6 +254,113 @@ function authenticate(req: any, res: any, next: any) {
 // API ROUTES
 
 // 1. AUTH: Login
+
+// 1.5. AUTH: Signup
+app.post('/api/auth/signup', async (req, res) => {
+  const { email, password, fullName } = req.body;
+  if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
+  const cleanEmail = email.trim().toLowerCase();
+
+  if (supabaseAdmin) {
+    try {
+      // Create user using Admin API to bypass email confirmation step which hangs without SMTP
+      const { data: adminData, error: adminErr } = await supabaseAdmin.auth.admin.createUser({
+        email: cleanEmail,
+        password: password,
+        email_confirm: true,
+        user_metadata: {
+          full_name: (fullName || '').trim(),
+          role: 'staff',
+        },
+      });
+
+      if (adminErr) {
+        if (adminErr.message?.toLowerCase().includes('already registered') || adminErr.message?.toLowerCase().includes('already exists')) {
+          return res.status(400).json({ error: 'A staff account with this email address already exists.' });
+        }
+        return res.status(400).json({ error: adminErr.message });
+      }
+
+      const authUserId = adminData.user?.id;
+
+      // Generate staff code
+      const { data: staffList } = await supabaseAdmin
+        .from('staff')
+        .select('staff_code')
+        .order('created_at', { ascending: false });
+
+      let maxNum = 0;
+      if (staffList && staffList.length > 0) {
+        staffList.forEach((s) => {
+          const match = s.staff_code?.match(/HAT-(\d+)/i);
+          if (match) {
+            const num = parseInt(match[1], 10);
+            if (!isNaN(num) && num > maxNum) maxNum = num;
+          }
+        });
+      }
+      const staffCode = `HAT-${String(maxNum + 1).padStart(4, '0')}`;
+
+      // Insert record into public.staff
+      const newStaffRecord = {
+        auth_user_id: authUserId,
+        staff_code: staffCode,
+        full_name: (fullName || '').trim() || email.split('@')[0],
+        email: cleanEmail,
+        role: 'staff',
+        status: 'active',
+      };
+
+      const { data: insertedStaff, error: insertError } = await supabaseAdmin
+        .from('staff')
+        .insert([newStaffRecord])
+        .select('*')
+        .single();
+
+      if (insertError) {
+        console.warn('Failed to insert staff record during proxy signup:', insertError);
+      }
+
+      return res.status(201).json({ success: true, user: insertedStaff || newStaffRecord });
+    } catch (spErr) {
+      console.warn('Supabase proxy signup failed:', spErr?.message);
+    }
+  }
+  
+  // Local DB Fallback
+  const db = readDB();
+  const existing = db.staff.find(s => s.email?.toLowerCase() === cleanEmail);
+  if (existing) {
+    return res.status(400).json({ error: 'A staff account with this email address already exists.' });
+  }
+  let maxNum = 0;
+  db.staff.forEach(s => {
+    const match = s.staffCode?.match(/HAT-(\d+)/i);
+    if (match) {
+      const num = parseInt(match[1], 10);
+      if (!isNaN(num) && num > maxNum) maxNum = num;
+    }
+  });
+  const staffCode = `HAT-${String(maxNum + 1).padStart(4, '0')}`;
+  
+  const newUser = {
+    id: 'local_' + Date.now().toString(),
+    staffCode,
+    name: (fullName || '').trim() || email.split('@')[0],
+    email: cleanEmail,
+    role: 'Staff',
+    status: 'active',
+    passwordHash: hashPassword(password),
+    mustChangePassword: false,
+    createdAt: new Date().toISOString()
+  };
+  
+  db.staff.push(newUser);
+  writeDB(db);
+  
+  return res.status(201).json({ success: true, user: newUser });
+});
+
 app.post('/api/auth/login', (req, res) => {
   const { username, password } = req.body;
   if (!username) {

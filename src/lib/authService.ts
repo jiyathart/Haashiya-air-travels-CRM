@@ -67,44 +67,12 @@ export const authService = {
    */
   async signUp(email: string, password: string, fullName?: string): Promise<{ user: StaffUser; token: string }> {
     email = email.trim().toLowerCase();
-
-    if (!supabase) {
-      throw new Error('Supabase is not configured. Local signup is not supported yet.');
+    try {
+      await api.signup(email, password, fullName || email.split('@')[0]);
+    } catch (err: any) {
+      throw new Error(err.message || 'Failed to sign up');
     }
-
-    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { full_name: fullName || email.split('@')[0] }
-      }
-    });
-
-    if (signUpError) {
-      throw new Error(signUpError.message);
-    }
-
-    if (!signUpData.user) {
-      throw new Error('An error occurred during sign up.');
-    }
-
-    const authUser = signUpData.user;
-    const sessionToken = signUpData.session?.access_token || 'supabase-session-token';
-
-    // Sync and query public.staff to auto-create the record
-    const staffUser = await supabaseService.syncUserToStaff({ id: authUser.id, email: authUser.email || email, full_name: fullName });
-
-    if (!staffUser) {
-      await supabase.auth.signOut();
-      throw new Error('Failed to create staff profile. Please contact your administrator.');
-    }
-
-    localStorage.setItem(LOCAL_STAFF_KEY, JSON.stringify(staffUser));
-
-    return {
-      user: staffUser,
-      token: sessionToken,
-    };
+    return this.signIn(email, password);
   },
 
   /**

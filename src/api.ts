@@ -90,6 +90,15 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
 
 export const api = {
   // AUTH
+  async signup(email: string, password: string, fullName: string) {
+    const res = await request<{ user: StaffUser }>('/api/auth/signup', {
+      method: 'POST',
+      body: JSON.stringify({ email, password, fullName })
+    });
+    return res.user;
+  },
+
+
   async login(username: string, password: string) {
     const res = await request<{ token: string; user: StaffUser }>('/api/auth/login', {
       method: 'POST',
